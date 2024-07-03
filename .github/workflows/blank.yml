@@ -51,10 +51,13 @@ jobs:
                 
       - name: Initialize Terraform
         run: terraform init
+        working-directory: ./second_module
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: ./second_module
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        working-directory: ./second_module
 
