@@ -10,6 +10,11 @@ variable "cluster_name" {
   default     = "dev-my-eks-cluster"
 }
 
+variable "environment" {
+  description = "Environment"
+  default     = "dev"
+}
+
 provider "aws" {
   region = var.region
 }
@@ -50,6 +55,11 @@ resource "aws_eks_cluster" "eks" {
 
   vpc_config {
     subnet_ids = data.aws_subnets.default.ids
+  }
+
+  tags = {
+    Environment = var.environment
+    Name        = var.cluster_name
   }
 
   depends_on = [aws_iam_role_policy_attachment.eks_cluster_AmazonEKSClusterPolicy]
