@@ -1,19 +1,19 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Create Cluster dev
+name: Create S3 module
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-#  push:
-#    branches: [ "main" ]
-#  pull_request:
-#    branches: [ "main" ]
+  #  push:
+  #    branches: [ "main" ]
+  #  pull_request:
+  #    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 env:
-  AWS_REGION: us-east-2 
+  AWS_REGION: us-east-2
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -44,24 +44,24 @@ jobs:
         run: |
           cd second_module
 
-      # Setup terraform   
+      # Setup terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-            terraform_version: 1.8.1
-                
+          terraform_version: 1.8.1
+
       - name: Initialize Terraform
         run: terraform init
-        working-directory: ./second_module/dev
+        working-directory: ./third_module
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./second_module/dev
+        working-directory: ./third_module
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./second_module/dev
+        working-directory: ./third_module
 
 #      - name: Terraform Destroy
 #        run: terraform destroy -auto-approve
-#        working-directory: ./second_module
+#        working-directory: ./third_module
