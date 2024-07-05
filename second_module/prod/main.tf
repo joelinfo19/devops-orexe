@@ -19,19 +19,27 @@ provider "aws" {
   region = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "prod-eks-labs-terraform-state"
+    key    = "prod-rks/terraform.tfstate"
+    region = "us-east-2"
+  }
+}
+
 data "aws_vpc" "default" {
   default = true
 }
 
 data "aws_subnets" "default" {
   filter {
-    name   = "vpc-id"
+    name   = "vpc-id-subnets"
     values = [data.aws_vpc.default.id]
   }
 }
 
 resource "aws_security_group" "eks_nodes" {
-  name        = "eks-nodes-sg"
+  name        = "eks-nodes-sg-j"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
