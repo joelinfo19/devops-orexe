@@ -15,7 +15,6 @@ module "s3_bucket" {
   version = "4.0.1"
 
   bucket = "my-j-module-public-bucket"
-  acl    = "private"
 }
 
 variable "region" {
