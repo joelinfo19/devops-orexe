@@ -42,12 +42,12 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: ./third_module/dev
+        working-directory: ./third_module
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./third_module/dev
+        working-directory: ./third_module
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
-        working-directory: ./third_module/dev
+        working-directory: ./third_module
