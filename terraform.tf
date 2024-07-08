@@ -2,7 +2,7 @@ terraform {
   cloud {
     organization = "learn-terraform-module-use"
     workspaces {
-      name = "learn-terraform-module-use"
+      name = "devops-orexe"
     }
   }
   required_providers {
